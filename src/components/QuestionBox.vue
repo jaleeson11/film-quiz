@@ -25,19 +25,11 @@
                                 <b-button variant="primary"
                                     class="mt-3"
                                     :disabled="selectedIndex === null || answered"
-                                    @click="submitAnswer(); nextQuestion();"
+                                    @click="submitAnswer(); nextQuestion(); completeQuiz();"
                                     v-if="lastQuestion">
                                     Submit
                                 </b-button>
                             </b-col>
-                            <!-- <b-col sm="6">
-                                <b-button variant="secondary"
-                                    class="mt-3"
-                                    @click="nextQuestion"
-                                    :disabled="lastQuestion() || !answered">
-                                    Next
-                                </b-button>
-                            </b-col> -->
                         </b-row>
                     </div>
                 </b-col>
