@@ -17,19 +17,13 @@ export default {
 </script>
 
 <style scoped>
-    @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-
-    .navbar {
-        background: #4B5270;
-    }
-
     .navbar-brand {
-        font-family: 'Lobster', cursive;
         font-size: 2.5rem;
+        font-weight: 700;
     }
 
     .navbar-light > .navbar-brand {
-        color: #20D3BD;
+        color: #fff;
     }
 
     .navbar-expand {

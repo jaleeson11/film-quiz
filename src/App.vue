@@ -29,8 +29,8 @@ export default {
       index: 0,
       questions: [],
       totalNumQuestions: 0,
-      color: '#252C4A',
-      logo: 'FilmQ'
+      color: '#124DF0',
+      logo: 'FilmQuiz'
     }
   },
   methods: {
@@ -55,19 +55,19 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 
 html, body {
   height: 100%;
 }
 
 #app {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #ffffff;
   display: block;
   height: 100%;
+  color: #000;
 }
 </style>

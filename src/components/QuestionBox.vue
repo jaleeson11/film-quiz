@@ -1,41 +1,45 @@
 <template>
-    <div>
+    <div :style="{backgroundColor: color}" class="pb-5">
         <b-container>
-            <h2>Question {{ questionCount }}/{{ totalNumQuestions }}</h2>
             <b-row>
-                <b-col sm="8" offset-sm="2" md="6" offset-md="3">
-                    <h3 v-html="currentQuestion.question"></h3>
-                    <b-list-group class="mt-3">
-                        <b-list-group-item v-for="(answer, index) in answers"
-                            :key="index"
-                            @click="selectAnswer(index)"
-                            :class="[
-                                selectedIndex === index ?
-                                'selected' :
-                                ''
-                            ]">
-                            {{ answer }}
-                        </b-list-group-item>
-                    </b-list-group>
-                    <b-row>
-                        <b-col sm="6">
-                            <b-button variant="primary"
-                                class="mt-3"
-                                :disabled="selectedIndex === null || answered"
-                                @click="submitAnswer(); nextQuestion();"
-                                v-if="lastQuestion">
-                                Submit
-                            </b-button>
-                        </b-col>
-                        <b-col sm="6">
-                            <b-button variant="secondary"
-                                class="mt-3"
-                                @click="nextQuestion"
-                                :disabled="lastQuestion() || !answered">
-                                Next
-                            </b-button>
-                        </b-col>
-                    </b-row>
+                <b-col md="6" offset-md="3">
+                    <div class="question-box">
+                        <header class="mb-3 text-left">
+                            <span>Question {{ questionCount }}.</span>
+                        </header>
+                        <h3 v-html="currentQuestion.question"></h3>
+                        <b-list-group class="mt-3">
+                            <b-list-group-item v-for="(answer, index) in answers"
+                                :key="index"
+                                @click="selectAnswer(index)"
+                                :class="[
+                                    selectedIndex === index ?
+                                    'selected' :
+                                    ''
+                                ]">
+                                <span v-html="answer"></span>
+                            </b-list-group-item>
+                        </b-list-group>
+                        <b-row>
+                            <b-col sm="12">
+                                <b-button variant="primary"
+                                    class="mt-3"
+                                    :disabled="selectedIndex === null || answered"
+                                    @click="submitAnswer(); nextQuestion();"
+                                    v-if="lastQuestion">
+                                    Submit
+                                </b-button>
+                            </b-col>
+                            <!-- <b-col sm="6">
+                                <b-button variant="secondary"
+                                    class="mt-3"
+                                    @click="nextQuestion"
+                                    :disabled="lastQuestion() || !answered">
+                                    Next
+                                </b-button>
+                            </b-col> -->
+                        </b-row>
+                    </div>
                 </b-col>
             </b-row>
         </b-container>
@@ -59,7 +63,8 @@ export default {
             shuffledAnswers: [],
             correctIndex: null,
             correctAnswers: 0,
-            answered: false
+            answered: false,
+            color: '#124DF0',
         }
     },
     props: {
@@ -67,7 +72,7 @@ export default {
         questions: Array,
         nextQuestion: Function,
         totalNumQuestions: Number,
-        questionCount: Number
+        questionCount: Number,
     },
     computed: {
         answers() {
@@ -119,36 +124,36 @@ export default {
 </script>
 
 <style scoped>
-    h2 {
-        font-size: 1.75rem;
-    }
-
     h3 {
         font-size: 1.4rem;
         margin-bottom: 40px;
     }
 
     .list-group-item.selected {
-        background: #aae5e2;
+        border-color: #124DF0;
+        color: #124DF0;
     }
 
     .list-group-item {
         background: #fff;
         margin-bottom: 15px;
-        border-radius: 5px;
+        border: 2px solid #ececee;
+        border-radius: 25px;
         cursor: pointer;
-        color: #34607f;
-        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     }
 
     .list-group-item:first-child {
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
     }
 
     .list-group-item:last-child {
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+    }
+
+    .list-group-item + .list-group-item {
+        border-top-width: 2px;
     }
 
     /deep/ .modal-backdrop {
@@ -170,5 +175,17 @@ export default {
     .container .btn-primary,
     .container .btn-seconary {
         width: 100%;
+    }
+
+    .question-box {
+        background: #fff;
+        padding: 20px 20px 40px;
+        border-radius: 25px;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    }
+
+    header > span {
+        font-size: 20px;
+        font-weight: 700;
     }
 </style>
